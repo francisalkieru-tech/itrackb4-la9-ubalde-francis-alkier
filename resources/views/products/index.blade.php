@@ -51,7 +51,7 @@
 </div>
 <table class="table table-striped table-bordered">
     <tr>
-        <th>#</th>
+        <th>No.</th>
         <th>Name</th>
         <th>Price</th>
         <th>Stock</th>
