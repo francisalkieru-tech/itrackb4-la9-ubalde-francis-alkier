@@ -1,8 +1,8 @@
-Q1. Your form sends data with POST rather than GET. Explain what would go wrong if it used GET instead. Your answer should say something about what a browser does when a page is refreshed.
-Answer: if the form is use GET, all the input data would be appended to the URL as a query string. Refreshing a page simply re-requests the same URL, and the browser does this silently for GET requests since it considers them harmless. That means every refresh would resubmit the exact same data and create a duplicate record.
+F1. Which column did you make nullable, and why that one and not another?
+Answer: In the description the nullable column because every product in my list is have a name, price, stock, category, and availability and not every product needs an extra notes, like in the product Pancit Canton this is already clear without a description, so its good to leave it empty. The other columns are needed for the list page and the filters to work.
 
-Q2. When validation fails, your controller does not run the code that saves the record — and you did not write an if statement to stop it. Explain what actually stops it, and where the visitor ends up.
-Answer: the validation call itself stops execution. When a rule fails it throws a validationexception internally, and since I never catch that exception, the rest of the method save and redirect lines simply never runs. 
+F2. Which step failed first for you, and what did the error say?
+Answer: The first thing that failed was creating a product in tinker before I added $fillable to my product model. It threw a MassAssignmentException that said Illuminate\Database\Eloquent\MassAssignmentException  Add [name] to fillable property to allow mass assignment on [App\Models\Product]. the laravel laravel telling the blocks filling columns in bulk unless I list them in $fillable, so I added all my columns there before running the php artisan tinker again.
 
-Q3. Your success message is displayed from the layout, which renders on every page. Explain why it does not appear on every page.
-Answer: the check lives in the layout, but the data it checks the session('success') this is only set right after a successful save and using ->with('success', 'Product added successfully!') the session flash data like this is only available for the very next request.
+F3. You changed no Blade file in Part D, yet your pages still work. Why not?
+My Blade files still work because my controller still passes the same variable names $products and $product to the same views. before they got the data from my JSON file and now they get it from the database through Product::all() and Product::findOrFail($id). eloquent models can be read like $product['name'] so the views don't know or care that the data now comes from a table.
